@@ -38,7 +38,8 @@ function submit_message(message) {
 
     function handle_response(data) {
       // append the bot repsonse to the div
-		if(`${data.result}`){
+		if(`${data.result}` == "null"){
+			console.log(`${data.result}`);
 			$('.conversation-view').append(`
 				<div class="chat-bubble">
 					<span class="chat-content">
