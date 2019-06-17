@@ -1,0 +1,152 @@
+<!-- /templates/index.html -->
+
+<!doctype html>
+<html lang="en">
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../static/style.css">
+    <title>Movie Recommend</title>
+</head>
+<body>
+<script src="https://js.pusher.com/4.1/pusher.min.js"></script>
+<script>
+</script>
+
+<header>
+    심심한데, 뭐 볼래?
+</header>
+<article>
+    <div class="movieDetail" >
+	<img src="{{ url_for('static', filename='title.png') }}" width="1020px" />
+        <!--<div class="movieOri">
+            <img class="detail Img"  src="Aladin.jpg" />
+            <div class="detail Simple" >
+                <div  class="detail Title">Aladin : The New Adventure</div>
+
+                <table class="detail Table" >
+                    <tr>
+                        <td >Original-title</td>
+                        <td ><div class="detail OriNation">Aladin</div></td>
+                    </tr>
+                    <tr>
+                        <td >Original-nation</td>
+                        <td ><div class="detail OriNation">United States</div></td>
+                    </tr>
+                    <tr>
+                        <td >Genre</td>
+                        <td><div class="detail Genre">Fantasy</div></td>
+                    </tr>
+                    <tr>
+                        <td >Release-date</td>
+                        <td><div class="detail Genre">2018-05-24</div></td>
+                    </tr>
+                    <tr>
+                        <td >Star-rating</td>
+                        <td><div class="detail rate">
+                            <div class="rate-top" style="width: 84%"><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div>
+                        <div class="rate-bottom"><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div>
+                        </div></td>
+                    </tr>
+                    <tr>
+                        <td colspan="2">
+                            <div class="tag"><span><img  class="hash" src="hashtag.png" /></span> nice</div>
+                            <div class="tag"><span><img  class="hash" src="hashtag.png" /></span> flat</div>
+                            <div class="tag"><span><img  class="hash" src="hashtag.png" /></span> tags</div>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+        <div class="crew">
+            <div class="details">Crews</div>
+            <div  class="detail actorDetail">
+                <img src="Aladin.jpg">
+                Aladin
+            </div>
+            <div  class="detail actorDetail">
+                <img src="Aladin.jpg">
+                Aladin
+            </div>
+            <div  class="detail actorDetail">
+                <img src="Aladin.jpg">
+                Aladin
+            </div>
+        </div>
+        <div class="actor">
+            <div class="details">Cast Actor</div>
+            <div  class="detail actorDetail">
+                <img src="Aladin.jpg">
+                Aladin
+            </div>
+            <div  class="detail actorDetail">
+                <img src="Aladin.jpg">
+                Aladin
+            </div>
+            <div  class="detail actorDetail">
+                <img src="Aladin.jpg">
+                Aladin
+            </div>
+        </div>
+        <div class="plot">
+            <div class="details">Plot</div>
+            Save the humans vs. Kill the humans. Control the supermassive monsters with frequencies! The Emma and Mark and their daughter Madison families are living in grief after Godzilla's attack on San Francisco left their son dead. Emma, a Monarch scientist who studies unknown creatures, finds a frequency that communicates with the giant monster in preparation for another attack. However, they are kidnapped by terrorist forces who try to control the monsters and destroy the Earth, and the ancient monsters such as Mosra, Rodan, and Prayera wake up one by one. Even the survival of mankind itself becomes uncertain in an unprecedented disaster situation, and with the emergence of a powerful Godzilla, the confrontation of the monsters takes a new turn. Families that are in the worst crisis again have to work together somehow to overcome the danger...
+        </div>
+        <div class="relatedMovie">
+            <div class="details">Related Film</div>
+            <div style="margin:5px" class="detail actorDetail">
+                <img src="Aladin.jpg">
+                Aladin
+            </div>
+            <div  class="detail actorDetail">
+                <img src="Aladin.jpg">
+                Aladin
+            </div>
+            <div  class="detail actorDetail">
+                <img src="Aladin.jpg">
+                Aladin
+            </div>
+            <div style="margin:5px" class="detail actorDetail">
+                <img src="Aladin.jpg">
+                Aladin
+            </div>
+            <div  class="detail actorDetail">
+                <img src="Aladin.jpg">
+                Aladin
+            </div>
+            <div  class="detail actorDetail">
+                <img src="Aladin.jpg">
+                Aladin
+            </div>
+        </div>
+        <div class="youtube">
+            <div class="details">Related YouTube</div>
+            <iframe src="https://www.youtube.com/embed?listType=search&list=%EA%B8%B0%EC%83%9D%EC%B6%A9" frameborder="0" allowfullscreen></iframe>
+        </div>-->
+    </div>
+    <div class="chat-window" >
+        <div class="profile">
+            <img class="profileImg" src="{{ url_for('static', filename='film.png') }}" />
+            <span class="Bot">rnasterpeice</span>
+            <span><a class="circle" onclick="first()">Manual</a></span>
+        </div>
+        <div class="conversation-view">
+
+        </div>
+        <form id="target" name="form">
+            <input name="message" class="text-input" type="text" id="input_message" autofocus placeholder="어떤 영화든 물어만 보세요!" />
+            <input type="submit" hidden>
+        </form>
+        <div class="message-box">
+        </div>
+    </div>
+</article>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
+<script src="https://js.pusher.com/4.1/pusher.min.js"></script>
+<script src="../static/custom.js"></script>
+</body>
+</html>
