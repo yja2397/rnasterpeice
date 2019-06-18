@@ -31,7 +31,7 @@ def index():
 
 # run Flask app
 if __name__ == "__main__":
-    app.run()
+    app.run(debug=True)
 
 
 def detect_intent_texts(project_id, session_id, text, language_code):
@@ -53,25 +53,22 @@ def send_message():
 	
     sentences_tag = []
     noun_list = []
+    okt = Okt()
     morph = okt.pos(message)
     sentences_tag.append(morph)
     for sentence1 in sentences_tag:
         for word, tag in sentence1:
             if tag in ['Noun']:
                 noun_list.append(word)
-	
     success = 0
-	
     for word in noun_list:
         if word == '검색':
             success = 1
             break
-	
     if success != 1:
         project_id = os.getenv('DIALOGFLOW_PROJECT_ID')
         fulfillment_text = detect_intent_texts(project_id, "unique", message, 'ko')
         result = dialog(fulfillment_text)
-
         response_text = {"message":  fulfillment_text, "result": result}
 
     else:
@@ -79,18 +76,17 @@ def send_message():
         fulfillment_text = message + " 결과는 다음과 같습니다."
 
         response_text = {"message": fulfillment_text, "result": result}
-
     socketId = request.form['socketId']
     pusher_client.trigger('movie_bot', 'new_message',
                           {'human_message': message, 'bot_message': fulfillment_text},
                           socketId)
-
     return jsonify(response_text)
 
 def dialog(sentence):
 
     sentences_tag = []
     noun_list = []
+    okt = Okt()
     morph = okt.pos(sentence)
     sentences_tag.append(morph)
 
@@ -222,8 +218,8 @@ def genreMovie(noun_list):
         return info_list(make_result('&with_genres=10752&sort_by=popularity.desc'))
     elif x == 19:
         return info_list(make_result('&with_genres=37&sort_by=popularity.desc'))
-    else:
-        print("wrong input")
+  
+	
 
 def popularMovie():
     return info_list(make_result('&certification_country=US&certification=R&sort_by=popularity.desc'))
@@ -502,6 +498,10 @@ def makeDetail():
                 </div>
             """.format('https://image.tmdb.org/t/p/w500/' + str(make_result_cast(api_id)['cast'][i]['profile_path']), make_result_cast(api_id)['cast'][i]['name'], make_result_cast(api_id)['cast'][i]['id'])
 
+    if make_result_id(api_id)['overview'] :
+	    overview = make_result_id(api_id)['overview']
+    else:
+        overview = ""
     response += """
         <div class="crew">
             <div class="details">Crews</div>
@@ -515,7 +515,7 @@ def makeDetail():
             <div class="details">Plot</div>
                 {2}
         </div>
-    """.format(crew, cast, make_result_id(api_id)['overview'])
+    """.format(crew, cast, overview)
 
     response += """
         <div class="relatedMovie">
